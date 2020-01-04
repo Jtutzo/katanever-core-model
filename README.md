@@ -21,7 +21,18 @@ mvn test
 
 ## Deploy new version on github packages
 
-Update version pom and create new version tag
+Update version on `pom.xml`
+```xml
+<project>
+    ...
+    <groupId>com.jtutzo.katanever</groupId>
+    <artifactId>katanever-core-model</artifactId>
+    <version>x.x.x</version>
+    ...
+</project>
+```
+
+Create new version tag
 ```bash
 git tag -a vx.x.x -m "Minor revision"
 git push origin vx.x.x
