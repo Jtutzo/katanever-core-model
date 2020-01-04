@@ -1,4 +1,4 @@
-name: version-ci
+name: on-push-tag-ci
 
 on:
   push:

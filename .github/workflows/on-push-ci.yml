@@ -1,4 +1,4 @@
-name: default-ci
+name: on-push-ci
 
 on: [push]
 
