@@ -1,6 +1,7 @@
 # Katanever-core-model
 model of katanever's core
-![](https://github.com/actions/jtutzo/katanever-core-model/.github/workflows/maven.yml/badge.svg)
+
+<a href="https://github.com/jtutzo/katanever-core-model"><img alt="Build status" src="https://github.com/jtutzo/katanever-core-model/workflows/JavaCI/badge.svg"></a>
 
 ## Compile
 ```bash
