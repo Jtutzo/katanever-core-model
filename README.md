@@ -1,5 +1,6 @@
 # Katanever-core-model
-It's model of katanever's core
+model of katanever's core
+https://github.com/<OWNER>/<REPOSITORY>/workflows/<WORKFLOW_NAME>/badge.svg
 
 ## Compile
 ```bash
