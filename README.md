@@ -1,6 +1,6 @@
 # Katanever-core-model
 model of katanever's core
-https://github.com/<OWNER>/<REPOSITORY>/workflows/<WORKFLOW_NAME>/badge.svg
+![](https://github.com/actions/jtutzo/katanever-core-model/.github/workflows/maven.yml/badge.svg)
 
 ## Compile
 ```bash
