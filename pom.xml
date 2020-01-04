@@ -15,7 +15,7 @@
 
     <distributionManagement>
         <repository>
-            <id>github-katanever-core-model</id>
+            <id>github</id>
             <name>GitHub jtutzo Apache Maven Packages</name>
             <url>https://maven.pkg.github.com/jtutzo/katanever-core-model</url>
         </repository>
