@@ -16,5 +16,5 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: Deploy on github packages
-      run: mvn deploy -Dregistry=https://maven.pkg.github.com/Jtutzo -Dtoken=${{ secrets.PACKAGE_TOKEN }}
+      run: mvn deploy -s .github/.m2/settings.xml --batch-mode #-Dregistry=https://maven.pkg.github.com/Jtutzo -Dtoken=${{ secrets.PACKAGE_TOKEN }}
       
