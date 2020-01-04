@@ -13,6 +13,14 @@
         <kotlin.version>1.3.61</kotlin.version>
     </properties>
 
+    <distributionManagement>
+        <repository>
+            <id>github-katanever-core-model</id>
+            <name>GitHub jtutzo Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/jtutzo/katanever-core-model</url>
+        </repository>
+    </distributionManagement>
+
     <dependencies>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
