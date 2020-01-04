@@ -16,3 +16,11 @@ mvn package
 ```bash
 mvn test
 ```
+
+## Deploy new version on github packages
+
+Update version pom and create new version tag :
+```bash
+git push origin master
+```
+
