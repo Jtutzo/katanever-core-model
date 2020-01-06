@@ -4,4 +4,5 @@ import com.jtutzo.katanever.core.model.Customer
 
 interface CustomerRepository {
     fun add(customer: Customer)
+    fun find(login: String): Customer?
 }

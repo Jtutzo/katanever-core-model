@@ -4,8 +4,13 @@ import com.jtutzo.katanever.core.model.Customer
 import com.jtutzo.katanever.core.model.repositories.CustomerRepository
 
 class InMemoryCustomerRepository: CustomerRepository {
+
+    private val customers = mutableSetOf<Customer>()
+
     override fun add(customer: Customer) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        customers.add(customer)
     }
+
+    override fun find(login: String): Customer? = customers.findLast { it.login == login }
 
 }

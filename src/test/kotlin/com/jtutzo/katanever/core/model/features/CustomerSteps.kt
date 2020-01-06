@@ -1,3 +1,5 @@
+package com.jtutzo.katanever.core.model.features
+
 import com.jtutzo.katanever.core.model.Customer
 import com.jtutzo.katanever.core.model.repositories.CustomerRepository
 import cucumber.api.java.fr.Etantdonné
