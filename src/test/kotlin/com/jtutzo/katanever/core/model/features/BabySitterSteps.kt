@@ -3,6 +3,7 @@ package com.jtutzo.katanever.core.model.features
 import com.jtutzo.katanever.core.model.*
 import com.jtutzo.katanever.core.model.repositories.BabySitterRepository
 import cucumber.api.java.fr.Alors
+import cucumber.api.java.fr.Et
 import cucumber.api.java.fr.Etantdonné
 import io.cucumber.datatable.DataTable
 import org.assertj.core.api.Assertions.*
@@ -17,19 +18,25 @@ class BabySitterSteps constructor(private val babySitterRepository: BabySitterRe
         }
     }
 
-    @Etantdonné("^Le baby-sitter \"([^\"]*)\" est disponible le \"([^\"]*)\" à \"([^\"]*)\" pendant \"([^\"]*)\"$")
-    @Throws(Throwable::class)
-    fun leBabySitterEstDisponible(login: String, day: String, time: String, duration: String) {
+    @Et("le baby-sitter {string} est déja réservé le {string} pendant {string}")
+    fun leBabySitterEstDejaReserve(login: String, dateTime: String, duration: String) {
+        val timeSlot = TimeSlot(buildLocalDateTime(dateTime), buildDuration(duration))
         val babySitter = babySitterRepository.find(login)
-        val timeSlot = TimeSlot(buildLocalDateTime(day, time), buildDuration(duration))
+        assertThat(babySitter).isNotNull
+        babySitter?.book(timeSlot)
+    }
+
+    @Etantdonné("^Le baby-sitter \"([^\"]*)\" est disponible le \"([^\"]*)\" pendant \"([^\"]*)\"$")
+    fun leBabySitterEstDisponible(login: String, dateTime: String, duration: String) {
+        val babySitter = babySitterRepository.find(login)
+        val timeSlot = TimeSlot(buildLocalDateTime(dateTime), buildDuration(duration))
         babySitter?.add(timeSlot)
         assertThat(babySitter).isNotNull
     }
 
-    @Alors("^Le baby-sitter \"([^\"]*)\" n\'est plus disponible le \"([^\"]*)\" à \"([^\"]*)\" pendant \"([^\"]*)\"$")
-    @Throws(Throwable::class)
-    fun leBabySitterNEstPlusDisponible(login: String, day: String, time: String, duration: String) {
-        val timeSlot = TimeSlot(buildLocalDateTime(day, time), buildDuration(duration))
+    @Alors("^Le baby-sitter \"([^\"]*)\" n\'est plus disponible le \"([^\"]*)\" pendant \"([^\"]*)\"$")
+    fun leBabySitterNEstPlusDisponible(login: String, dateTime: String, duration: String) {
+        val timeSlot = TimeSlot(buildLocalDateTime(dateTime), buildDuration(duration))
         val babySitter = babySitterRepository.find(login)
         assertThat(babySitter).isNotNull
         assertThat(babySitter!!.isAvailability(timeSlot)).isFalse()

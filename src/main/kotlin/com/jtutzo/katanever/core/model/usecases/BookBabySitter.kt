@@ -10,7 +10,6 @@ import com.jtutzo.katanever.core.model.repositories.BabySitterRepository
 import com.jtutzo.katanever.core.model.repositories.CustomerRepository
 import java.time.Duration
 import java.time.LocalDateTime
-import java.util.*
 
 class BookBabySitter(private val authenticationGateway: AuthenticationGateway,
                      private val customerRepository: CustomerRepository,
@@ -21,7 +20,7 @@ class BookBabySitter(private val authenticationGateway: AuthenticationGateway,
         val customer = loadCustomer()
         val babySitter = babySitterRepository.find(babySitterLogin)
         val timeSlot = TimeSlot(date, duration)
-        changeAvailability(babySitter!!, timeSlot)
+        book(babySitter!!, timeSlot)
         applyBooking(customer!!, babySitter, timeSlot)
     }
 
@@ -30,7 +29,7 @@ class BookBabySitter(private val authenticationGateway: AuthenticationGateway,
         return customerRepository.find(user!!.login)
     }
 
-    private fun changeAvailability(babySitter: BabySitter, timeSlot: TimeSlot) {
+    private fun book(babySitter: BabySitter, timeSlot: TimeSlot) {
         babySitter.book(timeSlot)
         babySitterRepository.save(babySitter)
     }

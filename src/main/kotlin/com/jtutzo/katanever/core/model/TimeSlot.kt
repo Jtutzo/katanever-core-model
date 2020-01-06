@@ -15,6 +15,7 @@ data class TimeSlot(val startDate: LocalDateTime, val duration: Duration) {
 fun TimeSlot.endDate(): LocalDateTime = startDate.plus(duration)
 
 fun TimeSlots.merge(timeSlot: TimeSlot) = this
+        .plus(timeSlot)
         .groupBy { it.exclude(timeSlot) }
         .flatMap {
             if (!it.key) setOf(it.value
@@ -36,9 +37,9 @@ private fun TimeSlot.merge(timeSlot: TimeSlot): TimeSlot = when {
 }
 
 private fun TimeSlot.remove(timeSlot: TimeSlot): TimeSlots = when {
-    isSame(timeSlot) -> emptySet()
-    isBefore(timeSlot) -> removeAtTheBeginning(timeSlot)
-    isAfter(timeSlot) -> removeAtTheEnd(timeSlot)
+    timeSlot.isSame(this) -> emptySet()
+    timeSlot.isBefore(this) -> removeAtTheBeginning(timeSlot)
+    timeSlot.isAfter(this) -> removeAtTheEnd(timeSlot)
     include(timeSlot) -> removeInCenter(timeSlot)
     else -> setOf(copy())
 }
@@ -62,7 +63,7 @@ private fun TimeSlot.removeAtTheBeginning(timeSlot: TimeSlot) =
         setOf(TimeSlot.between(timeSlot.endDate(), endDate()))
 
 private fun TimeSlot.removeAtTheEnd(timeSlot: TimeSlot) =
-        setOf(TimeSlot.between(timeSlot.startDate, endDate()))
+        setOf(TimeSlot.between(startDate, timeSlot.startDate))
 
 private fun TimeSlot.removeInCenter(timeSlot: TimeSlot) =
         setOf(TimeSlot.between(startDate, timeSlot.startDate),
